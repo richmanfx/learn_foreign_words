@@ -6,5 +6,6 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 
 @require_GET                                    # Разрешить только GET- запросы
 def start_page(request):
-    # return HttpResponse('Привет! ')
-    return render(request, 'start_page.html', {})
+    template = 'start_page.html'
+    context = {}
+    return render(request, template, context)

@@ -1,21 +1,29 @@
 <!doctype html>
 <html lang="ru">
-
+    {% load staticfiles %}
 <head>
     <title>
         {% block title %}Запоминатель иностранных слов.{% endblock %}
     </title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta http-equiv="content-language" content="ru">
+    <link rel="stylesheet" type="text/css" href="{% static "learn_foreign_words/css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "learn_foreign_words/css/apps.css" %}" />
 </head>
 
 <body>
-    <div style="text-align: center;">
-	    <h1>
-    	    Запоминатель иностранных слов
-	    </h1>
+    <div class="row">
+        <div class="col-sm-9 col-md-9" style="background:darkcyan; min-height:90vh;">
+	        <h2>
+    	        Запоминатель иностранных слов
+	        </h2>
+            {% block content %}{% endblock %}
+         </div>
+        <div class="col-sm-3 col-md-3" style="background:lightseagreen; min-height:90vh;">
+            Здесь будет меню для загрузки своего файла.
+        </div>
     </div>
-    {% block content %}{% endblock %}
+
 </body>
 
 </html>

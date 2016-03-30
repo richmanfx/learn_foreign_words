@@ -1,0 +1,108 @@
+body {
+	background-color: #008080;
+    color: white;
+    font-family: sans-serif Consolas;
+}
+
+div {
+    /* Поля вокруг текста */
+    padding: 25px 40px 40px;
+}
+
+
+/*******************************************************************************
+ * Button                                                                      *
+ ******************************************************************************/
+.button {
+	color: yellow;
+	background-color: teal;
+	background-radius: 0;
+/*	padding: 5 22 5 22;		*/
+    border: 1pt cyan;
+    /*	font-family: Consolas;	*/
+	font-size: 12pt;
+}
+
+.button:hover {
+	background-color: teal;
+	color: white;
+}
+
+.button:focus
+{
+	background-color: #00a0a0;
+	color: red;
+    border: 1pt solid white;
+    border-radius: 0 0;
+/*      border-insets: 1 1 1 1, 0;	*/
+}
+
+/*******************************************************************************
+ * RadioButton                                                                 *
+ ******************************************************************************/
+.radio-button {
+	color: white;
+	background-color: #009090;
+	background-radius: 1.0em;
+    border-radius: 1.0em;
+    border: 2px #00ffff;
+}
+
+.radio-button:hover {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+
+.radio-button::selection {
+   /* background-color: #ff0000;	*/
+}
+
+/*******************************************************************************
+ * Label                                                                       *
+ ******************************************************************************/
+h1 {
+	color: orangered;
+	text-align: center;
+	font-size: 30pt;
+	font-weight: normal;
+}
+
+h2 {
+	color: yellow;
+    text-align: center;
+}
+
+h3 {
+	background-color: Red;
+	color: #000000;
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+/*******************************************************************************
+ * TextField                                                                   *
+ ******************************************************************************/
+.textfield {
+	background-color: #009090;
+	color: white;
+	border-color: #00ffff;
+}
+
+
+/*******************************************************************************
+ * CheckBox                                                                    *
+ ******************************************************************************/
+.check-box {
+	color: yellow;
+}
+
+.check-box .box {
+    border: 2px #00ffff;
+    background-color: #009090;
+}
+
+.check-box .box::selection {
+	color: #ff0000;
+
+}
+
