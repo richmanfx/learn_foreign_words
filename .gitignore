@@ -1,0 +1,8 @@
+# all files in folder ./.idea
+/.idea/*
+
+todo.txt
+
+*.pyc
+
+
