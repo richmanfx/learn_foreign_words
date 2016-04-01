@@ -1,0 +1,14 @@
+<!-- Страница результата -->
+
+{% extends "base_page.html" %}
+
+{% block title %}
+    {{ block.super }} Страница результата.
+{% endblock %}
+
+{% block content %}
+    Запрос: {{ zapros }}<br>
+    Введённое слово: {{ entered_word }}<br>
+    Рандом слово: {{ random_word_global }}<br>
+    Результат: {{ result }}
+{% endblock %}

@@ -15,4 +15,5 @@ urlpatterns = patterns('',
 
 urlpatterns = [
     url(r'^$', start_page, name='start_page'),
+#    url(r'^result/', result_page, name='result_page'),
 ]

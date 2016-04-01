@@ -7,5 +7,25 @@
 {% endblock %}
 
 {% block content %}
-        Привет!
+    <h1>{{ random_word.foreign_word }}</h1>
+
+    {% for e in form.non_field_errors %}
+        <div>{{ e }}</div>
+    {% endfor %}
+
+    <form method="post" action="/result/">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="border-width:0" align="center">
+                {{ field }}<br>
+                <label><sup>{{ field.label }}</sup></label>
+                {% if field.errors %}
+                    <div class="alert alert-danger">Не введены данные.</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div style="border-width:0" align="center">
+            <button type="submit" class="btn btn-success"> OK </button>
+        </div>
+    </form>
 {% endblock %}
