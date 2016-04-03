@@ -7,8 +7,19 @@
 {% endblock %}
 
 {% block content %}
-    Запрос: {{ zapros }}<br>
-    Введённое слово: {{ entered_word }}<br>
-    Рандом слово: {{ random_word_global }}<br>
-    Результат: {{ result }}
+    <h1>{{ random_word }}</h1>
+    <h2>{{ entered_word }}</h2>
+        {% if result %}
+            <h3>Верно</h3>
+        {% else %}
+            <h4>Ошибка</h4>
+            <p style="text-align: center">{{ random_word_global }}</p>
+        {% endif %}
+    <form>
+        <p style="text-align: center">
+            <a href="/learn_foreign_words/" class="btn btn-success">
+	            Дальше
+            </a>
+        </p>
+    </form>
 {% endblock %}

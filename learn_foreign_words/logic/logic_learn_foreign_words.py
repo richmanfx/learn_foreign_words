@@ -15,9 +15,9 @@ def get_random_word(words):
 def correctness_translate(entered_word, foreign_words):
 
     if entered_word.lower() in foreign_words.lower():
-        result = 'Верно.'
+        result = True
     else:
-        result = 'Ошибка.'
+        result = False
 
 #    if result.find('Верно.') is not -1:
 #       my_counter.gud_count_increment()

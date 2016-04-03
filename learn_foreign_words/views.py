@@ -9,6 +9,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
+random_word_global_2 = ''
 
 
 def start_page(request):
@@ -19,9 +20,9 @@ def start_page(request):
         if form.is_valid():
             entered_word = form.cleaned_data['translate_word']
             result = correctness_translate(entered_word, random_word_global)
-            # return HttpResponse(entered_word + u'-->' + random_word.foreign_word)
             return render(
                 request, 'result_page.html', {
+                    'random_word': random_word_global_2,
                     'entered_word': entered_word,
                     'random_word_global': random_word_global,
                     'result': result,
@@ -35,6 +36,8 @@ def start_page(request):
         # print(random_word.translate_word)
         global random_word_global
         random_word_global = random_word.translate_word
+        global random_word_global_2
+        random_word_global_2 = random_word.foreign_word
         context = {
                     'random_word': random_word,
                     'form': form,

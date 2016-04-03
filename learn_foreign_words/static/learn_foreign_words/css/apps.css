@@ -34,10 +34,19 @@ h2 {
 }
 
 h3 {
-	background-color: Red;
-	color: #000000;
-	font-size: 18pt;
+	color: limegreen;
+	/*background-color: cyan;*/
 	font-weight: bold;
+	font-size: 25pt;
+	text-align: center;
+}
+
+h4 {
+	color: red;
+	/*background-color: darkblue;*/
+	font-weight: bold;
+	font-size: 25pt;
+	text-align: center;
 }
 
 /*******************************************************************************
