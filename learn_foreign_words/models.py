@@ -11,7 +11,7 @@ class Dictionary(models.Model):
     translate_word = models.CharField(max_length=255)
 
     def __unicode__(self):
-        return unicode(self.foreign_word) or u''
+        return self.foreign_word or u''
 
     def get_url(self):
         return reverse('dictionary', kwargs={'id': self.id})

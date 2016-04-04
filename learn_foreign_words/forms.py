@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from models import Dictionary
 
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 
 class TranslateWordForm(forms.Form):
-    translate_word = forms.CharField(max_length=100, label='введите перевод слова')
+    translate_word = forms.CharField(max_length=100)
 
     def __init__(self, *args, **kwargs):
         super(TranslateWordForm, self).__init__(*args, **kwargs)
