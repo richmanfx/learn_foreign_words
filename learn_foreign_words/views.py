@@ -16,6 +16,8 @@ random_word_global_2 = ''
 @never_cache
 def start_page(request):
     template = 'start_page.html'
+    global random_word_global
+    global random_word_global_2
 
     if request.method == 'POST':
         form = TranslateWordForm(request.POST)
@@ -36,9 +38,7 @@ def start_page(request):
         all_words = Dictionary.objects.all()
         random_word = get_random_word(all_words)
         # print(random_word.translate_word)
-        global random_word_global
         random_word_global = random_word.translate_word
-        global random_word_global_2
         random_word_global_2 = random_word.foreign_word
         context = {
                     'random_word': random_word,
