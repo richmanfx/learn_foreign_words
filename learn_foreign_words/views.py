@@ -6,12 +6,14 @@ from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word,
 from models import Dictionary
 from forms import TranslateWordForm
 from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.views.decorators.cache import never_cache
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
 random_word_global_2 = ''
 
 
+@never_cache
 def start_page(request):
     template = 'start_page.html'
 
