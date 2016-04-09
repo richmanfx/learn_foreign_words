@@ -15,7 +15,6 @@ random_word_global_2 = ''
 
 @never_cache
 def start_page(request):
-
     global random_word_global
     global random_word_global_2
     context = ''
@@ -26,7 +25,6 @@ def start_page(request):
         if form.is_valid():
             entered_word = form.cleaned_data['translate_word']
             result = correctness_translate(entered_word, random_word_global)
-            print(u'Рандом ворды: ' + random_word_global)
             context = {
                     'random_word': random_word_global_2,
                     'entered_word': entered_word,
@@ -46,18 +44,4 @@ def start_page(request):
                     'random_word': random_word,
                     'form': form,
         }
-
     return render(request, template, context)
-
-'''
-def result_page(request):
-    template = 'result_page.html'
-
-    zapros = request.method
-
-    context = {
-        'zapros': zapros,
-    }
-
-    return render(request, template, context)
-'''
