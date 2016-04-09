@@ -1,5 +1,3 @@
-<!-- Страница результата -->
-
 {% extends "base_page.html" %}
 
 {% block title %}
@@ -15,11 +13,12 @@
             <h4>Ошибка</h4>
             <p style="text-align: center">{{ random_word_global }}</p>
         {% endif %}
-    <form>
+    <form method="GET" action="/learn_foreign_words/">
+        {% csrf_token %}
         <p style="text-align: center">
-            <a href="/learn_foreign_words/" class="btn btn-success">
-	            Дальше
-            </a>
+            <button type="submit" class="btn btn-success" autofocus="autofocus">
+                Дальше
+            </button>
         </p>
     </form>
 {% endblock %}
