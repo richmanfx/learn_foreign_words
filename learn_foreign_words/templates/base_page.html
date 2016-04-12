@@ -7,12 +7,13 @@
     </title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta http-equiv="content-language" content="ru">
-    <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="stylesheet" type="text/css" href="{% static "learn_foreign_words/css/bootstrap.min.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "learn_foreign_words/css/apps.css" %}" />
 </head>
 
 <body>
+    <script src="{% static "learn_foreign_words/js/jquery.min.js" %}"></script>
+    <script src="{% static "learn_foreign_words/js/bootstrap-modal.js" %}" type="text/javascript"></script>
     <h2>
         Запоминатель иностранных слов
     </h2>
@@ -24,11 +25,19 @@
     </div>
 
     <div class="row" style="border-width: 0">
-        <div class="col-sm-12 col-md-12" style="background:darkslategrey">
-            Здесь будет меню для загрузки своего файла.
+        <div class="col-sm-12 col-md-12 bd-example" style="background:darkslategrey">
+                <button type="button"
+                        class="btn btn-info"
+                        style="font-size: 3rem"
+                        data-toggle="modal"
+                        data-target="#aboutModal"
+                >
+                    О программе
+                </button>
         </div>
     </div>
 
-</body>
+    {% include 'about_modal.html' %}
 
+</body>
 </html>
