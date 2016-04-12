@@ -24,20 +24,21 @@ div {
 h1 {
 	color: orangered;
 	text-align: center;
-	font-size: 30pt;
+	font-size: 7rem;
 	font-weight: normal;
 }
 
 h2 {
 	color: yellow;
-    text-align: center;
+	text-align: center;
+	font-size: 7rem;
 }
 
 h3 {
 	color: limegreen;
 	/*background-color: cyan;*/
 	font-weight: bold;
-	font-size: 25pt;
+	font-size: 7rem;
 	text-align: center;
 }
 
@@ -45,7 +46,7 @@ h4 {
 	color: red;
 	/*background-color: darkblue;*/
 	font-weight: bold;
-	font-size: 25pt;
+	font-size: 7rem;
 	text-align: center;
 }
 
@@ -54,12 +55,12 @@ h4 {
  ******************************************************************************/
 form {
 	color: black;
-	font-size: 20pt;
+	font-size: 5rem;
 }
 
 sup {
 	color: darkslategray;
-	font-size: 10pt;
+	font-size: 0.5rem;
 }
 
 /*******************************************************************************
@@ -89,6 +90,28 @@ sup {
     border: 1pt solid white;
     border-radius: 0 0;
 /*      border-insets: 1 1 1 1, 0;	*/
+}
+
+a.button1 {
+	font-weight: 700;
+	font-size: 3rem;
+  	text-decoration: none;
+  	padding: .8em 1em calc(.8em + 3px);
+  	border-radius: 0.5rem;
+  	background: rgb(64,199,129);
+  	box-shadow: 0 -0.5rem rgb(53,167,110) inset;
+  	transition: 0.2s;
+  	color: white;
+}
+
+a.button1:hover {
+    background: rgb(53, 167, 110);
+    color: yellow;
+}
+
+a.button1:active {
+  	background: rgb(33,147,90);
+  	box-shadow: 0 1rem rgb(33,147,90) inset;
 }
 
 /*******************************************************************************

@@ -8,17 +8,20 @@
     <h1>{{ random_word }}</h1>
     <h2>{{ entered_word }}</h2>
         {% if result %}
-            <h3>Верно</h3>
+            <h3 style="text-decoration: underline">Верно</h3>
+            <br><br>
         {% else %}
-            <h4>Ошибка</h4>
-            <p style="text-align: center">{{ random_word_global }}</p>
+            <h4 style="text-decoration: underline">Ошибка</h4>
+            <p style="text-align: center; font-size: 5rem">{{ random_word_global }}</p>
         {% endif %}
-    <form method="GET" action="/learn_foreign_words/">
-        {% csrf_token %}
         <p style="text-align: center">
-            <button type="submit" class="btn btn-success" autofocus="autofocus">
+            <br>
+            {# На form не переделывать - кешировать начинает!!! #}
+            <a href="/learn_foreign_words/"
+               class="btn btn-success btn-lg btn-block"
+               style="font-size: 5rem"
+            >
                 Дальше
-            </button>
+            </a>
         </p>
-    </form>
 {% endblock %}
