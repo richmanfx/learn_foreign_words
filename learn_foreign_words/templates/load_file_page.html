@@ -1,0 +1,18 @@
+{% extends "base_page.html" %}
+
+{% block title %}
+    {{ block.super }} Страница загрузки файла.
+{% endblock %}
+
+{% block content %}
+        <form action="/learn_foreign_words/load_file/"
+              method="post"
+              enctype="multipart/form-data"> {# style="text-align: center"> #}
+            {% csrf_token %}
+            {{ form.my_file }}
+            <br>
+            <input type="submit" value="Загрузить"
+                   class="btn btn-success btn-lg btn-block"
+                   style="font-size: 5rem">
+        </form>
+{% endblock %}

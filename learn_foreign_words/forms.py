@@ -18,3 +18,14 @@ class TranslateWordForm(forms.Form):
         if translate_word.strip() == '':
             raise forms.ValidationError(u'Поле не заполнено.')
         return translate_word
+
+
+class LoadFileForm(forms.Form):
+    # title = forms.CharField(max_length=50)
+    my_file = forms.FileField(label='Файл для загрузки')
+
+    # def clean_file(self):
+    #     my_file = self.cleaned_data['file']
+    #     if my_file.name == '':
+    #         raise forms.ValidationError(u'Поле не заполнено')
+    #     return my_file

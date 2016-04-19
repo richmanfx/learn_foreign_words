@@ -7,8 +7,12 @@ __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 
 class Dictionary(models.Model):
-    foreign_word = models.CharField(max_length=100)
-    translate_word = models.CharField(max_length=255)
+    foreign_word = models.CharField(max_length=100, verbose_name='Иностранное слово')
+    translate_word = models.CharField(max_length=255, verbose_name='Перевод слова')
+
+    class Meta:
+        verbose_name = 'Иностранное слово'
+        verbose_name_plural = 'Иностранные слова'
 
     def __unicode__(self):
         return self.foreign_word or u''

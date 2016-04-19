@@ -1,8 +1,5 @@
 # -*- coding: UTF-8 -*-
-import os
 import random
-import sys
-import argparse
 
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
@@ -25,3 +22,10 @@ def correctness_translate(entered_word, foreign_words):
 #     my_counter.bad_count_increment()
 
     return result
+
+
+def handle_loaded_file(loaded_file):
+    with open('/usr/home/alex/tmp/loaded_file.data', 'wb+') as destination:
+        for chunk in loaded_file.chunks():  # обрабатываем файл по частям, вдруг большой
+            destination.write(chunk)
+        # destination.close()

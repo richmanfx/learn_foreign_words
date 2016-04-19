@@ -1,0 +1,15 @@
+{% extends "base_page.html" %}
+
+{% block title %}
+    {{ block.super }} Страница загрузки файла.
+{% endblock %}
+
+{% block content %}
+    <h3>Файл успешно загружен</h3>
+    <br><br><br>
+    <a href="/learn_foreign_words/"
+       class="btn btn-success btn-block"
+       style="font-size: 5rem">
+            Дальше
+    </a>
+{% endblock %}

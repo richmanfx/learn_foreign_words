@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
 from views import *
 
 '''
@@ -14,6 +14,6 @@ urlpatterns = patterns('',
 '''
 
 urlpatterns = [
+    url(r'^load_file/', load_file, name='load_file'),
     url(r'^$', start_page, name='start_page'),
-#    url(r'^result/', result_page, name='result_page'),
 ]

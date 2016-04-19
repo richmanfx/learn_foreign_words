@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
     {% load staticfiles %}
 <head>
     <title>
@@ -25,15 +25,18 @@
     </div>
 
     <div class="row" style="border-width: 0">
-        <div class="col-sm-12 col-md-12 bd-example" style="background:darkslategrey">
-                <button type="button"
-                        class="btn btn-info"
-                        style="font-size: 3rem"
-                        data-toggle="modal"
-                        data-target="#aboutModal"
-                >
+        <div class="col-sm-12 col-md-12" style="background:darkslategrey">
+            <a class="btn btn-info"
+               style="font-size: 3rem"
+               data-toggle="modal"
+               data-target="#aboutModal">
                     О программе
-                </button>
+            </a>
+            <a href="/learn_foreign_words/load_file/"
+               class="btn btn-info"
+               style="font-size: 3rem">
+                    Свой словарь
+            </a>
         </div>
     </div>
 
