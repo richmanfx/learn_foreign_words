@@ -6,7 +6,7 @@ from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word,
                                                                 handle_loaded_file
 from models import Dictionary
 from forms import TranslateWordForm, LoadFileForm
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+# from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
@@ -53,14 +53,20 @@ def start_page(request):
 @require_http_methods(['GET', 'POST'])
 def load_file(request):
 
+    template = 'load_file_page.html'
+
     if request.method == 'POST':
         form = LoadFileForm(request.POST, request.FILES)
+        context = {'form': form, }
         if form.is_valid():
-            handle_loaded_file(request.FILES['my_file'])
-            template = 'success_load_file.html'
-            return render(request, template)
+            result_load_file = handle_loaded_file(request.FILES['my_file'])
+            if result_load_file == '':
+                template = 'successful_load_file.html'
+            else:
+                template = 'bad_load_file.html'
+                context = {'file_error': result_load_file}
     else:   # GET
         form = LoadFileForm()
-        template = 'load_file_page.html'
         context = {'form': form, }
-        return render(request, template, context)
+
+    return render(request, template, context)

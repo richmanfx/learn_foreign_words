@@ -22,10 +22,10 @@ class TranslateWordForm(forms.Form):
 
 class LoadFileForm(forms.Form):
     # title = forms.CharField(max_length=50)
-    my_file = forms.FileField(label='Файл для загрузки')
+    my_file = forms.FileField(label='Свой словарь')
 
-    # def clean_file(self):
-    #     my_file = self.cleaned_data['file']
+    # def clean_load_file_form(self):
+    #     my_file = self.cleaned_data['my_file']
     #     if my_file.name == '':
     #         raise forms.ValidationError(u'Поле не заполнено')
     #     return my_file
