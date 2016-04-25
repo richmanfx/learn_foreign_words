@@ -7,10 +7,14 @@ __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 
 class Dictionary(models.Model):
-    foreign_word = models.CharField(max_length=100, verbose_name='Иностранное слово')
-    translate_word = models.CharField(max_length=255, verbose_name='Перевод слова')
+    foreign_word = models.CharField(max_length=100,
+                                    verbose_name='Иностранное слово',
+                                    unique=True)
+    translate_word = models.CharField(max_length=255,
+                                      verbose_name='Перевод слова')
 
     class Meta:
+        ordering = ['foreign_word']
         verbose_name = 'Иностранное слово'
         verbose_name_plural = 'Иностранные слова'
 
@@ -19,3 +23,9 @@ class Dictionary(models.Model):
 
     def get_url(self):
         return reverse('dictionary', kwargs={'id': self.id})
+
+
+class UserDictionary(Dictionary):       # Наследуемся от основного словаря
+    class Meta:
+        verbose_name = 'Иностранное слово Пользователя'
+        verbose_name_plural = 'Иностранные слова Пользователя'

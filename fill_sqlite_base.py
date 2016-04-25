@@ -8,18 +8,18 @@ import sys
 
 
 #  tables
-'''
+"""
 CREATE TABLE "learn_foreign_words_dictionary" (
     "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
     "foreign_word" varchar(100) NOT NULL, 
     "translate_word" varchar(255) NOT NULL
 );
-'''
+"""
 
 learn_foreign_words_dictionary_data= (
 		    (1, u'acceptance', u'приём, признание, принятие, одобрение'),
-		    (2, u'advertisement', u'рекламный, реклама, объявление, анонс'),
-		    (3, u'advanced', u'передовой, прогрессивный'),
+		    (2, u'advanced', u'передовой, прогрессивный'),
+		    (3, u'advertisement', u'рекламный, реклама, объявление, анонс'),
 		    (4, u'all', u'любой, все, всё, целый'),
 		    (5, u'and', u'и'),
 		    (6, u'animal', u'животное, зверь'),
@@ -70,8 +70,8 @@ learn_foreign_words_dictionary_data= (
 		    (51, u'dull', u'тупой, скучный, тусклый, унылый'),
 		    (52, u'during', u'втечение'),
 		    (53, u'dust', u'пыль'),
-		    (54, u'earth', u'земля'),
-		    (55, u'ear', u'ухо'),
+		    (54, u'ear', u'ухо'),
+		    (55, u'earth', u'земля'),
 		    (56, u'eat', u'есть, кушать'),
 		    (57, u'egg', u'яйцо'),
 		    (58, u'engine', u'мотор, двигатель, механизм'),
@@ -82,11 +82,11 @@ learn_foreign_words_dictionary_data= (
 		    (63, u'experience', u'опыт, стаж'),
 		    (64, u'explosion', u'взрыв, взрывной'),
 		    (65, u'eye', u'глаз'),
-		    (66, u'fallacy', u'ошибка, заблуждение'),
-		    (67, u'fall', u'падать'),
+		    (66, u'fall', u'падать'),
+		    (67, u'fallacy', u'ошибка, заблуждение'),
 		    (68, u'far', u'далёкий, дальний'),
-		    (69, u'father', u'отец'),
-		    (70, u'fat', u'жир, сало'),
+		    (69, u'fat', u'жир, сало'),
+		    (70, u'father', u'отец'),
 		    (71, u'fear', u'бояться'),
 		    (72, u'feather', u'перо'),
 		    (73, u'few', u'немного, мало, несколько'),
@@ -97,8 +97,8 @@ learn_foreign_words_dictionary_data= (
 		    (78, u'five', u'пять'),
 		    (79, u'flexible', u'гибкий'),
 		    (80, u'float', u'плыть, плавать, сплавляться, буй, поплавок'),
-		    (81, u'flower', u'цветок'),
-		    (82, u'flow', u'течь'),
+		    (81, u'flow', u'течь'),
+		    (82, u'flower', u'цветок'),
 		    (83, u'fly', u'летать'),
 		    (84, u'fog', u'туман'),
 		    (85, u'foot', u'стопа'),

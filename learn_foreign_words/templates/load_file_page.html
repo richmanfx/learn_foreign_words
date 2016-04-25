@@ -9,18 +9,16 @@
           method="post"
           enctype="multipart/form-data">
             {% csrf_token %}
-{#            {{ form }}#}
-{#                <label style="text-align: center" for="id_my_file"><h2>Свой словарь:</h2></label>#}
-                        <p style="text-align: center; color: aquamarine;
+                <p style="text-align: center; color: aquamarine;
                                  ">
-                            Свой словарь:
-                        </p>
-                            <input id="id_my_file"
-                                   name="my_file"
-                                   type="file"
-                                   style="margin: auto; width: 100%; padding: 1rem;
-                                          background: darkslategrey; color: chartreuse;
-                                          border: 2px solid #FFFFFF; border-radius: 0.7rem;"/>
+                    Свой словарь:
+                </p>
+                    <input id="id_my_file"
+                           name="my_file"
+                           type="file"
+                           style="margin: auto; width: 100%; padding: 1rem;
+                                  background: darkslategrey; color: chartreuse;
+                                  border: 2px solid #FFFFFF; border-radius: 0.7rem;"/>
             <br>
             <input type="submit" value="Загрузить"
                    class="btn btn-success btn-lg btn-block"

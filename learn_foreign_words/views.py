@@ -3,8 +3,9 @@ from __future__ import print_function
 from django.shortcuts import render     # , render_to_response
 from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word, \
                                                                 correctness_translate, \
-                                                                handle_loaded_file
-from models import Dictionary
+                                                                handle_loaded_file, \
+                                                                load_in_db_dictionary
+from models import Dictionary, UserDictionary
 from forms import TranslateWordForm, LoadFileForm
 # from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
@@ -13,6 +14,9 @@ __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
 random_word_global_2 = ''
+
+# Загрузка в базу начального словаря при старте
+load_in_db_dictionary('dictionary.txt')
 
 
 @require_http_methods(['GET', 'POST'])
@@ -32,9 +36,7 @@ def start_page(request):
                     'random_word': random_word_global_2,
                     'entered_word': entered_word,
                     'random_word_global': random_word_global,
-                    'result': result,
-            }
-
+                    'result': result, }
     else:   # GET
         template = 'start_page.html'
         form = TranslateWordForm()
@@ -45,14 +47,12 @@ def start_page(request):
         random_word_global_2 = random_word.foreign_word
         context = {
                     'random_word': random_word,
-                    'form': form,
-        }
+                    'form': form, }
     return render(request, template, context)
 
 
 @require_http_methods(['GET', 'POST'])
 def load_file(request):
-
     template = 'load_file_page.html'
 
     if request.method == 'POST':

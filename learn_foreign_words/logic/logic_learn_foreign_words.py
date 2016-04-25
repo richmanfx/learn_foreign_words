@@ -1,8 +1,30 @@
 # -*- coding: UTF-8 -*-
 import random
 import mimetypes
+from learn_foreign_words.models import Dictionary, UserDictionary
+import sqlite3 as lite
+import sys
 
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
+
+
+def load_in_db_dictionary(dict_name):
+    """
+    Table:
+    CREATE TABLE "learn_foreign_words_dictionary" (
+        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+        "foreign_word" varchar(100) NOT NULL,
+        "translate_word" varchar(255) NOT NULL
+    );
+    """
+    # Открыть файл словаря
+    # open(dict_name, 'r')
+    # lines = dict_name.readlines()  # Читаем файл в список строк
+
+    # Очистить таблицу словаря в базе
+    # ### Dictionary.objects.
+
+    # Залить новый словарь в базу
 
 
 def get_random_word(words):
@@ -26,7 +48,6 @@ def correctness_translate(entered_word, foreign_words):
 
 
 def handle_loaded_file(loaded_file):
-
     result = ''                     # Резултат проверки файла
     max_file_size = 102400          # Максимальный размер файла (100 кБ)
 
@@ -40,13 +61,14 @@ def handle_loaded_file(loaded_file):
         else:
             # Построчная проверка файла
             lines = loaded_file.readlines()         # Читаем файл в список строк
+
             for i, line in enumerate(lines):
                 if line.count('=') == 0:
                     result += 'Неверный формат файла: в сроке ' + \
                                str(i + 1) + ' нет разделителя "=". \n'
                 elif line.count('=') > 1:
                     result += 'Неверный формат файла: в сроке ' + \
-                               str(i + 1) + ' много разделителей "=". \n'
+                               str(i + 1) + ' больше одного разделителя "=". \n'
 
             for i, line in enumerate(lines):
                 first_word = line.split('=')[0].strip().replace(" ", "").decode('utf-8')
