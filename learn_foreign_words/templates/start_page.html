@@ -14,20 +14,14 @@
     <form method="post" action="/learn_foreign_words/">
         {% csrf_token %}
         {% for field in form %}
-            <p style="text-align: center">
-                {{ field }}<br>
-                {% if field.errors %}
-                    <div class="alert alert-danger">Не введены данные.</div>
-                {% endif %}
+            <p>
+                {{ field }}
+            <br>
         {% endfor %}
         <br>
-        <p style="text-align: center">
-            <button type="submit"
-                    class="btn btn-success btn-lg btn-block"
-                    style="font-size: 5rem"
-            >
+        <p>
+            <button id="btn-ok" type="submit" class="btn btn-success btn-block">
                 OK
             </button>
-        </p>
     </form>
 {% endblock %}

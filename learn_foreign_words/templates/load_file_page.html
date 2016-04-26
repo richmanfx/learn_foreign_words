@@ -6,22 +6,13 @@
 
 {% block content %}
     <form action="/learn_foreign_words/load_file/"
-          method="post"
-          enctype="multipart/form-data">
-            {% csrf_token %}
-                <p style="text-align: center; color: aquamarine;
-                                 ">
-                    Свой словарь:
-                </p>
-                    <input id="id_my_file"
-                           name="my_file"
-                           type="file"
-                           style="margin: auto; width: 100%; padding: 1rem;
-                                  background: darkslategrey; color: chartreuse;
-                                  border: 2px solid #FFFFFF; border-radius: 0.7rem;"/>
-            <br>
-            <input type="submit" value="Загрузить"
-                   class="btn btn-success btn-lg btn-block"
-                   style="font-size: 5rem">
-        </form>
+          enctype="multipart/form-data"
+          method="post">
+        {% csrf_token %}
+        <h5>Свой словарь:</h5>
+        <input id="id_my_file" name="my_file" type="file"/>
+        <br>
+        <input id="btn-ok" class="btn btn-success btn-block"
+               type="submit" value="Загрузить"/>
+    </form>
 {% endblock %}

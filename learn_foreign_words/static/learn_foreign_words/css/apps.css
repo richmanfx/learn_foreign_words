@@ -1,52 +1,104 @@
 body {
 	background-color: #008080;
-    color: white;
+    color: #FFFFFF;
     font-family: sans-serif Consolas;
 }
 
 div {
     /* Поля вокруг текста */
-    padding-top: 25px;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-bottom: 25px;
+	padding: 25px 40px;
 
-    /* Углы скруглённые */
+	/* Углы скруглённые */
     border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
+	border: 0;
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    font-size: 3rem;
+}
+
+#base {
+	background:#008B8B;
+	border: 1px solid #FFFFFF;
+	min-height:75vh;
+}
+
+#footer {
+	background:#008B8B;
+	border: 1px solid #FFFFFF;
+}
+
+#btn-footer {
+    font-size: 3rem;
+    color:#ffff00;
+}
+
+#aboutModal {
+	border-width: 2px;
+	color: #000000;
+	font-size: 2rem;
+}
+
+#headerModal {
+	color: #0000ff;
+	font-weight: bold;
+}
+
+#btn-ok {
+	font-size: 5rem;
+}
+
+#id_my_file {
+    /*margin: auto;*/
+    width: 100%;
+    padding: 1rem;
+    background: #008080;
+    color: #7fff00;
+    border: 2px solid #FFFFFF;
+    border-radius: 0.7rem;"
+}
+
+#estimation {
+    text-decoration: underline;
 }
 
 /*******************************************************************************
  * Label                                                                       *
  ******************************************************************************/
 h1 {
-	color: orangered;
+	color: #FF4400;
 	text-align: center;
 	font-size: 7rem;
 	font-weight: normal;
 }
 
 h2 {
-	color: yellow;
+	color: #ffff00;
 	text-align: center;
 	font-size: 7rem;
 }
 
 h3 {
-	color: limegreen;
-	/*background-color: cyan;*/
+	color: #30d030;
 	font-weight: bold;
 	font-size: 7rem;
 	text-align: center;
 }
 
 h4 {
-	color: red;
-	/*background-color: darkblue;*/
+	color: #ff0000;
 	font-weight: bold;
 	font-size: 7rem;
+	text-align: center;
+}
+
+h5 {
+	color: #7fffd4;
+	font-size: 5rem;
 	text-align: center;
 }
 
@@ -54,40 +106,37 @@ h4 {
  * TextField                                                                   *
  ******************************************************************************/
 form {
-	color: black;
+	color: #000000;
 	font-size: 5rem;
 }
 
 sup {
-	color: darkslategray;
+	color: #2f4f4f;
 	font-size: 0.5rem;
 }
 
 /*******************************************************************************
  * Button                                                                      *
  ******************************************************************************/
-
-
 .button {
-	color: yellow;
-	background-color: teal;
-	background-radius: 0;
-/*	padding: 5 22 5 22;		*/
-    border: 1pt cyan;
+	color: #ffff00;
+	background-color: #008080;
+	/*	padding: 5 22 5 22;		*/
+    border: 1pt #00ffff;
     /*	font-family: Consolas;	*/
 	font-size: 12pt;
 }
 
 .button:hover {
-	background-color: teal;
-	color: white;
+	background-color: #008080;
+	color: #ffffff;
 }
 
 .button:focus
 {
 	background-color: #00a0a0;
-	color: red;
-    border: 1pt solid white;
+	color: #ff0000;
+    border: 1pt solid #ffffff;
     border-radius: 0 0;
 /*      border-insets: 1 1 1 1, 0;	*/
 }
@@ -98,29 +147,28 @@ a.button1 {
   	text-decoration: none;
   	padding: .8em 1em calc(.8em + 3px);
   	border-radius: 0.5rem;
-  	background: rgb(64,199,129);
-  	box-shadow: 0 -0.5rem rgb(53,167,110) inset;
+  	background: #40d080;
+  	box-shadow: 0 -0.5rem #309070 inset;
   	transition: 0.2s;
-  	color: white;
+  	color: #ffffff;
 }
 
 a.button1:hover {
-    background: rgb(53, 167, 110);
-    color: yellow;
+    background: #309070;
+    color: #ffff00;
 }
 
 a.button1:active {
-  	background: rgb(33,147,90);
-  	box-shadow: 0 1rem rgb(33,147,90) inset;
+  	background: #21935A;
+  	box-shadow: 0 1rem #21935A inset;
 }
 
 /*******************************************************************************
  * RadioButton                                                                 *
  ******************************************************************************/
 .radio-button {
-	color: white;
+	color: #ffffff;
 	background-color: #009090;
-	background-radius: 1.0em;
     border-radius: 1.0em;
     border: 2px #00ffff;
 }
@@ -138,7 +186,7 @@ a.button1:active {
  * CheckBox                                                                    *
  ******************************************************************************/
 .check-box {
-	color: yellow;
+	color: #ffff00;
 }
 
 .check-box .box {
@@ -148,6 +196,4 @@ a.button1:active {
 
 .check-box .box::selection {
 	color: #ff0000;
-
 }
-

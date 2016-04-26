@@ -8,20 +8,16 @@
     <h1>{{ random_word }}</h1>
     <h2>{{ entered_word }}</h2>
         {% if result %}
-            <h3 style="text-decoration: underline">Верно</h3>
+            <h3 id="estimation">Верно</h3>
             <br><br>
         {% else %}
-            <h4 style="text-decoration: underline">Ошибка</h4>
-            <p style="text-align: center; font-size: 5rem">{{ random_word_global }}</p>
+            <h4 id="estimation">Ошибка</h4>
+            <h5>{{ random_word_global }}</h5>
         {% endif %}
-        <p style="text-align: center">
-            <br>
-            {# На form не переделывать - кешировать начинает!!! #}
-            <a href="/learn_foreign_words/"
-               class="btn btn-success btn-lg btn-block"
-               style="font-size: 5rem"
-            >
-                Дальше
-            </a>
-        </p>
+        <br>
+        {# На form не переделывать - кешировать начинает!!! #}
+        <a id="btn-ok" href="/learn_foreign_words/"
+                       class="btn btn-success btn-block">
+            Дальше
+        </a>
 {% endblock %}
