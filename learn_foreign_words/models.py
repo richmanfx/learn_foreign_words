@@ -25,7 +25,19 @@ class Dictionary(models.Model):
         return reverse('dictionary', kwargs={'id': self.id})
 
 
-class UserDictionary(Dictionary):       # Наследуемся от основного словаря
+class UserDictionary(models.Model):
+    foreign_word = models.CharField(max_length=100,
+                                    verbose_name='Иностранное слово',
+                                    unique=True)
+    translate_word = models.CharField(max_length=255,
+                                      verbose_name='Перевод слова')
+
     class Meta:
         verbose_name = 'Иностранное слово Пользователя'
         verbose_name_plural = 'Иностранные слова Пользователя'
+
+    def __unicode__(self):
+        return self.foreign_word or u''
+
+    def get_url(self):
+         return reverse('userdictionary', kwargs={'id': self.id})

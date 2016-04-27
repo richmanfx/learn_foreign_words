@@ -1,30 +1,16 @@
 # -*- coding: UTF-8 -*-
 import random
 import mimetypes
-from learn_foreign_words.models import Dictionary, UserDictionary
-import sqlite3 as lite
-import sys
+from learn_foreign_words.models import UserDictionary
 
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 
-def load_in_db_dictionary(dict_name):
-    """
-    Table:
-    CREATE TABLE "learn_foreign_words_dictionary" (
-        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-        "foreign_word" varchar(100) NOT NULL,
-        "translate_word" varchar(255) NOT NULL
-    );
-    """
-    # Открыть файл словаря
-    # open(dict_name, 'r')
-    # lines = dict_name.readlines()  # Читаем файл в список строк
-
-    # Очистить таблицу словаря в базе
-    # ### Dictionary.objects.
-
-    # Залить новый словарь в базу
+def clear_dictionary(dictionary):
+    my_dict = dictionary.objects.all()
+    print('До очистки:' + str(my_dict))
+    my_dict.delete()
+    print('После очистки:' + str(my_dict))
 
 
 def get_random_word(words):
@@ -61,7 +47,6 @@ def handle_loaded_file(loaded_file):
         else:
             # Построчная проверка файла
             lines = loaded_file.readlines()         # Читаем файл в список строк
-
             for i, line in enumerate(lines):
                 if line.count('=') == 0:
                     result += 'Неверный формат файла: в сроке ' + \
@@ -85,5 +70,22 @@ def handle_loaded_file(loaded_file):
         for chunk in loaded_file.chunks():  # обрабатываем файл по частям, вдруг большой
             destination.write(chunk)
         # destination.close()   # c with автоматически закроется файл
+
+    if result == '':
+        result = loaded_file_to_dict(lines)
+
+    return result
+
+
+def loaded_file_to_dict(lines_loaded_file):
+    # Заносим слова из файла в базу
+    for line in lines_loaded_file:
+        first_word = line.split('=')[0].strip().decode('utf-8')
+        translate_words = line.split('=')[-1].strip().decode('utf-8')
+        new_db_line = UserDictionary(foreign_word=first_word, translate_word=translate_words)
+        new_db_line.save()
+
+    # TODO: Возможно try делать и в результат выдавать эксцепшн
+    result = ''
 
     return result

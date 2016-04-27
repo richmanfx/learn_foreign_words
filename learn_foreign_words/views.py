@@ -4,7 +4,8 @@ from django.shortcuts import render     # , render_to_response
 from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word, \
                                                                 correctness_translate, \
                                                                 handle_loaded_file, \
-                                                                load_in_db_dictionary
+                                                                clear_dictionary, \
+                                                                loaded_file_to_dict
 from models import Dictionary, UserDictionary
 from forms import TranslateWordForm, LoadFileForm
 # from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -14,9 +15,6 @@ __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
 random_word_global_2 = ''
-
-# Загрузка в базу начального словаря при старте
-load_in_db_dictionary('dictionary.txt')
 
 
 @require_http_methods(['GET', 'POST'])
@@ -66,6 +64,9 @@ def load_file(request):
                 template = 'bad_load_file.html'
                 context = {'file_error': result_load_file}
     else:   # GET
+        # Очистка словаря пользователя
+        clear_dictionary(UserDictionary)
+
         form = LoadFileForm()
         context = {'form': form, }
 

@@ -1,16 +1,16 @@
+
 body {
-	background-color: #008080;
+    background-color: #008080;
     color: #FFFFFF;
-    font-family: sans-serif Consolas;
+    font-family: sans-serif;
 }
 
 div {
     /* Поля вокруг текста */
-	padding: 25px 40px;
-
-	/* Углы скруглённые */
+    padding: 25px 40px;
+    /* Углы скруглённые */
     border-radius: 5px;
-	border: 0;
+    border: 0;
 }
 
 p {
@@ -37,6 +37,10 @@ a {
     color:#ffff00;
 }
 
+#div-footer {
+	padding-top: 0;
+}
+
 #aboutModal {
 	border-width: 2px;
 	color: #000000;
@@ -55,7 +59,7 @@ a {
 #id_my_file {
     /*margin: auto;*/
     width: 100%;
-    padding: 1rem;
+    padding: 2rem;
     background: #008080;
     color: #7fff00;
     border: 2px solid #FFFFFF;
@@ -64,6 +68,16 @@ a {
 
 #estimation {
     text-decoration: underline;
+}
+
+#id_translate_word {
+	background: url('../img/inputbg.jpg') repeat-x;
+	padding: 0 1rem;
+}
+
+#id_translate_word:focus {
+	border: 3px solid #0000ff;
+	background-color: #FFFFFF;
 }
 
 /*******************************************************************************
@@ -119,12 +133,12 @@ sup {
  * Button                                                                      *
  ******************************************************************************/
 .button {
-	color: #ffff00;
-	background-color: #008080;
-	/*	padding: 5 22 5 22;		*/
+    color: #ffff00;
+    background-color: #008080;
+    /* padding: 5 22 5 22;		*/
     border: 1pt #00ffff;
-    /*	font-family: Consolas;	*/
-	font-size: 12pt;
+    /* font-family: Consolas;	*/
+    font-size: 12pt;
 }
 
 .button:hover {
