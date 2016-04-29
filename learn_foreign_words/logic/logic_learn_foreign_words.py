@@ -34,7 +34,7 @@ def correctness_translate(entered_word, foreign_words):
 
 
 def handle_loaded_file(loaded_file):
-    result = ''                     # Резултат проверки файла
+    result = ''                     # Результат проверки файла
     max_file_size = 102400          # Максимальный размер файла (100 кБ)
 
     # Проверить размер файла

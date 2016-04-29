@@ -2,16 +2,17 @@
 body {
     background-color: #008080;
     color: #FFFFFF;
-    font-family: sans-serif;
+    font-family: serif;
 }
 
 div {
     /* Поля вокруг текста */
     padding: 25px 40px;
     /* Углы скруглённые */
-    border-radius: 5px;
+    border-radius: 0.5rem;
     border: 0;
 }
+
 
 p {
     text-align: center;
@@ -27,17 +28,17 @@ a {
 	min-height:75vh;
 }
 
-#footer {
+.footer {
 	background:#008B8B;
 	border: 1px solid #FFFFFF;
 }
 
-#btn-footer {
+.btn-footer {
     font-size: 3rem;
     color:#ffff00;
 }
 
-#div-footer {
+.div-footer {
 	padding-top: 0;
 }
 
@@ -79,6 +80,21 @@ a {
 	border: 3px solid #0000ff;
 	background-color: #FFFFFF;
 }
+
+label {
+    font-size: 3rem;
+/*    margin-right: 5rem;*/
+}
+
+/*
+#label_user_dict, #label_basic_dict {
+    padding-right: 2rem;
+}
+*/
+input {
+    font-size: 5rem;
+}
+
 
 /*******************************************************************************
  * Label                                                                       *
@@ -177,37 +193,45 @@ a.button1:active {
   	box-shadow: 0 1rem #21935A inset;
 }
 
-/*******************************************************************************
- * RadioButton                                                                 *
- ******************************************************************************/
-.radio-button {
-	color: #ffffff;
-	background-color: #009090;
-    border-radius: 1.0em;
-    border: 2px #00ffff;
-}
-
-.radio-button:hover {
-    background-color: #e0e0e0;
-    border-color: #e0e0e0;
-}
-
-.radio-button::selection {
-   /* background-color: #ff0000;	*/
-}
 
 /*******************************************************************************
  * CheckBox                                                                    *
  ******************************************************************************/
-.check-box {
-	color: #ffff00;
+input[type=checkbox] {
+    visibility: hidden;
 }
 
-.check-box .box {
-    border: 2px #00ffff;
-    background-color: #009090;
+.checkboxFour {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background: #333333;
+    margin: 10px 10px 10px 20px;
+    border-radius: 100%;
+    position: relative;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0,5);
 }
 
-.check-box .box::selection {
-	color: #ff0000;
+span.checkboxFour {
+    padding: 0 1rem;
+    margin: 0px;
+}
+
+.checkboxFour label {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    z-index: 1;
+    background: #FF0000;
+    box-shadow:inset 0px 1px 3px rgba(0,0,0,0,5);
+}
+
+.checkboxFour input[type=checkbox]:checked + label {
+    background: #00FF00;
 }

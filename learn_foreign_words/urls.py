@@ -17,3 +17,4 @@ urlpatterns = [
     url(r'^load_file/', load_file, name='load_file'),
     url(r'^$', start_page, name='start_page'),
 ]
+

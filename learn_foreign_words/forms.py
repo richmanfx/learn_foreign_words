@@ -9,7 +9,7 @@ class TranslateWordForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(TranslateWordForm, self).__init__(*args, **kwargs)
-        self.fields['translate_word'].widget.attrs.update({'autofocus': '',
+        self.fields['translate_word'].widget.attrs.update({'autofocus': 'true',
                                                            'required': 'required',
                                                            'placeholder': 'введите перевод слова'})
 
