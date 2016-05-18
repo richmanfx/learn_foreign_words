@@ -6,9 +6,7 @@ body {
 }
 
 div {
-    /* Поля вокруг текста */
     padding: 25px 40px;
-    /* Углы скруглённые */
     border-radius: 0.5rem;
     border: 0;
 }

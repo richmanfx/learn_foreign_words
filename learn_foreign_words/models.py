@@ -40,4 +40,16 @@ class UserDictionary(models.Model):
         return self.foreign_word or u''
 
     def get_url(self):
-         return reverse('userdictionary', kwargs={'id': self.id})
+         return reverse('user_dictionary', kwargs={'id': self.id})
+
+
+class GlobalStatus(models.Model):
+    basic_dict_status = models.BooleanField()
+    user_dict_status = models.BooleanField()
+
+    class Meta:
+        verbose_name = 'Состояние'
+        verbose_name_plural = 'Состояния'
+
+    def __unicode__(self):
+        return self.basic_dict_status or u''
