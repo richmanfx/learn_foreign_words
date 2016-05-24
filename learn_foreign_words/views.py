@@ -4,9 +4,9 @@ from django.shortcuts import render     # , render_to_response
 from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word, \
                                                                 correctness_translate, \
                                                                 handle_loaded_file, \
-                                                                clear_dictionary, \
-                                                                loaded_file_to_dict
-from models import Dictionary, UserDictionary
+                                                                clear_dictionary    #, \
+                                                                # loaded_file_to_dict
+from models import Dictionary, UserDictionary, GlobalStatus
 from forms import TranslateWordForm, LoadFileForm
 # from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
@@ -38,6 +38,19 @@ def start_page(request):
     else:   # GET
         template = 'start_page.html'
         form = TranslateWordForm()
+        # Считываем с какими словарями работать
+        dict_status = GlobalStatus.objects.get(id=1)
+        print(GlobalStatus.get_status(dict_status))
+
+        # Изменяем статус словаря
+        new_status = {u'basic_dict': True, u'user_dict': False, u'swodesh_dict': False, u'cw_dict': False}
+        GlobalStatus.set_status(dict_status, new_status)
+        # dict_status.basic_dict_status = False
+        # dict_status.cw_dict_status = True
+        # dict_status.save()
+
+        # GlobalStatus.save()
+
         # Получаем случайное иностранное слово
         all_words = Dictionary.objects.all()
         random_word = get_random_word(all_words)

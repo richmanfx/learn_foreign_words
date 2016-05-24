@@ -6,6 +6,7 @@ from learn_foreign_words.models import UserDictionary
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 
+# Очищает таблицу словаря
 def clear_dictionary(dictionary):
     my_dict = dictionary.objects.all()
     print('До очистки:' + str(my_dict))
@@ -13,13 +14,14 @@ def clear_dictionary(dictionary):
     print('После очистки:' + str(my_dict))
 
 
+# Возвращает случайный объект
 def get_random_word(words):
     random.seed()                       # инициализация
     return random.choice(words)
 
 
+# Сверяет введённое слово с правильными ответами
 def correctness_translate(entered_word, foreign_words):
-
     if entered_word.lower() in foreign_words.lower():
         result = True
     else:
@@ -33,6 +35,7 @@ def correctness_translate(entered_word, foreign_words):
     return result
 
 
+# Проверка загружаемого файла - размер, mime-type, формат строк
 def handle_loaded_file(loaded_file):
     result = ''                     # Результат проверки файла
     max_file_size = 102400          # Максимальный размер файла (100 кБ)
@@ -60,7 +63,7 @@ def handle_loaded_file(loaded_file):
                 if not first_word.isalpha():
                     result += 'Неверный формат файла: в начале строки ' + \
                                str(i + 1) + ' требуется слово. \n'
-                last_word = line.split('=')[-1].split(',')[-1].strip().replace(" ", "").decode('utf-8')
+                last_word = line.split('=')[-1].split(',')[-1].strip().replace(" ", "").replace("-", "").decode('utf-8')
                 if not last_word.isalpha():
                     result += 'Неверный формат файла: в конце строки ' + \
                                str(i + 1) + ' требуется слово. \n'
@@ -69,7 +72,7 @@ def handle_loaded_file(loaded_file):
     with open('/usr/home/alex/tmp/loaded_file.data', 'wb+') as destination:
         for chunk in loaded_file.chunks():  # обрабатываем файл по частям, вдруг большой
             destination.write(chunk)
-        # destination.close()   # c with автоматически закроется файл
+        # destination.close()   # c with файл закрывается автоматически
 
     if result == '':
         result = loaded_file_to_dict(lines)
@@ -77,8 +80,8 @@ def handle_loaded_file(loaded_file):
     return result
 
 
+# Считывает слова из файла в базу пользовательского словаря
 def loaded_file_to_dict(lines_loaded_file):
-    # Заносим слова из файла в базу
     for line in lines_loaded_file:
         first_word = line.split('=')[0].strip().decode('utf-8')
         translate_words = line.split('=')[-1].strip().decode('utf-8')
