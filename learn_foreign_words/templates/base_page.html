@@ -70,9 +70,37 @@
         </div>
     </div>
     {% include 'about_modal.html' %}
-    <script src="{% static 'learn_foreign_words/js/jquery.min.js' %}"></script>
-    <script src="{% static 'learn_foreign_words/js/bootstrap-modal.js' %}"
-            type="text/javascript"></script>
+    <script type="text/javascript"
+            src="{% static 'learn_foreign_words/js/jquery.min.js' %}">
+    </script>
+    <script type="text/javascript"
+            src="{% static 'learn_foreign_words/js/bootstrap-modal.js' %}">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#checkbox_basic_dict").click(function(){
+                if($(this).is(':checked')){
+                    alert("Чекбокс базового словаря установлен!")
+                    $.ajax({
+                        url: '/base_set/',
+                        type: 'POST',
+                        data: {post_id: 12, text: 'Занятная идея!'},
+                    }).success(function (data) {
+                        if(data.status == 'ok') {
+                            console.log(data.comment_id)
+                        }
+                    }).error(function () {
+                        console.log('http error')
+                    })
+                } else {
+                    alert("Чекбокс базового словаря НЕ установлен!");
+                }
+            });
+
+
+            $("#checkbox_swodesh_dict").click(function(){alert("Вы нажали на кнопку Сводеш!");});
+        });
+    </script>
 </body>
 </html>
 
