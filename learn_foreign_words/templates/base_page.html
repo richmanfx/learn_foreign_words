@@ -29,19 +29,19 @@
                 </span>
             </label>
 
-            <label id="label_swodesh_dict" class="btn btn-info btn-footer">
-                Словарь Сводеша
-                <span class="dictCheckbox">
-                    <input type="checkbox" value="1" id="checkbox_swodesh_dict" name="">
-                    <label for="checkbox_swodesh_dict"></label>
-                </span>
-            </label>
-
             <label id="label_cw_dict" class="btn btn-info btn-footer">
                 Словарь CW слов
                 <span class="dictCheckbox">
                     <input type="checkbox" value="1" id="checkbox_cw_dict" name="">
                     <label for="checkbox_cw_dict"></label>
+                </span>
+            </label>
+
+            <label id="label_swodesh_dict" class="btn btn-info btn-footer">
+                Словарь Сводеша
+                <span class="dictCheckbox">
+                    <input type="checkbox" value="1" id="checkbox_swodesh_dict" name="">
+                    <label for="checkbox_swodesh_dict"></label>
                 </span>
             </label>
 
@@ -65,7 +65,7 @@
             </a>
             <a href="/learn_foreign_words/load_file/"
                class="btn btn-info btn-footer">
-                    Свой словарь
+                    Загрузить словарь пользователя
             </a>
         </div>
     </div>
@@ -77,30 +77,88 @@
             src="{% static 'learn_foreign_words/js/bootstrap-modal.js' %}">
     </script>
     <script type="text/javascript">
+        {# Изменение состояния чекбоксов на странице и занесение статусов словарей в БД #}
         $(document).ready(function(){
             $("#checkbox_basic_dict").click(function(){
                 if($(this).is(':checked')){
-                    alert("Чекбокс базового словаря установлен!")
                     $.ajax({
-                        url: '/base_set/',
-                        type: 'POST',
-                        data: {post_id: 12, text: 'Занятная идея!'},
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {basic_dict: 'on'}
                     }).success(function (data) {
-                        if(data.status == 'ok') {
-                            console.log(data.comment_id)
-                        }
-                    }).error(function () {
-                        console.log('http error')
-                    })
+                        if(data.status == 'ok') {alert('Используется базовый словарь.')}
+                    }).error(function () {alert('Ошибка: Базовый словарь не подключился!')} )
                 } else {
-                    alert("Чекбокс базового словаря НЕ установлен!");
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {basic_dict: 'off'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Базовый словарь отключен.')}
+                    }).error(function () {alert('Ошибка: Базовый словарь не отключился!')} )
                 }
             });
 
+            $("#checkbox_cw_dict").click(function(){
+                if($(this).is(':checked')){
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {cw_dict: 'on'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Используется CW словарь.')}
+                    }).error(function () {alert('Ошибка: CW словарь не подключился!')} )
+                } else {
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {cw_dict: 'off'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('CW словарь отключен.')}
+                    }).error(function () {alert('Ошибка: CW словарь не отключился!')} )
+                }
+            });
 
-            $("#checkbox_swodesh_dict").click(function(){alert("Вы нажали на кнопку Сводеш!");});
+            $("#checkbox_swodesh_dict").click(function(){
+                if($(this).is(':checked')){
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {swodesh_dict: 'on'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Используется словарь Сводеша.')}
+                    }).error(function () {alert('Ошибка: Словарь Сводеша не подключился!')} )
+                } else {
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {swodesh_dict: 'off'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Словарь Сводеша отключен.')}
+                    }).error(function () {alert('Ошибка: Словарь Сводеша не отключился!')} )
+                }
+            });
+
+            $("#checkbox_user_dict").click(function(){
+                if($(this).is(':checked')){
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {user_dict: 'on'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Используется словарь пользователя.')}
+                    }).error(function () {alert('Ошибка: Словарь пользователя не подключился!')} )
+                } else {
+                    $.ajax({
+                        url: '/learn_foreign_words/dict_status_set/', type: 'POST',
+                        data: {user_dict: 'off'}
+                    }).success(function (data) {
+                        if(data.status == 'ok') {alert('Словарь пользователя отключен.')}
+                    }).error(function () {alert('Ошибка: Словарь пользователя не отключился!')} )
+                }
+            });
         });
+
+        {# Запуск скриптов из start_page.html после загрузки base_page.html #}
+        start_page();
+
     </script>
+{#    <script type="text/javascript">#}
+{#            alert('Установка чеккед для basic_dict.');#}
+{#            $("#checkbox_basic_dict").prop("checked", true);#}
+{#    </script>#}
 </body>
 </html>
-

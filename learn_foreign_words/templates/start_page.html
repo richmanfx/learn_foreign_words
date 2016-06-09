@@ -24,4 +24,41 @@
                 OK
             </button>
     </form>
+
+    {{ basic_dict_status }}
+    {{ cw_dict_status }}
+    {{ swodesh_dict_status }}
+    {{ user_dict_status }}
+
+ {# Выставление чекбоксов на странице по данным из таблицы статусов словарей #}
+    <script type="text/javascript">
+        {# TODO: Отрефакторить в цикл без повторов IF-ов. #}
+        function start_page() {
+            {% if basic_dict_status == True %}
+{#                alert('Установка чеккед для basic_dict.');#}
+                $("#checkbox_basic_dict").prop("checked", true);
+            {% else %}
+{#                alert('Сброс чеккед для basic_dict.');#}
+                $("#checkbox_basic_dict").prop("checked", false);
+            {% endif %}
+
+            {% if cw_dict_status == True %}
+                $("#checkbox_cw_dict").prop("checked", true);
+            {% else %}
+                $("#checkbox_cw_dict").prop("checked", false);
+            {% endif %}
+
+            {% if swodesh_dict_status == True %}
+                $("#checkbox_swodesh_dict").prop("checked", true);
+            {% else %}
+                $("#checkbox_swodesh_dict").prop("checked", false);
+            {% endif %}
+
+            {% if user_dict_status == True %}
+                $("#checkbox_user_dict").prop("checked", true);
+            {% else %}
+                $("#checkbox_user_dict").prop("checked", false);
+            {% endif %}
+        }
+    </script>
 {% endblock %}

@@ -6,11 +6,13 @@ from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word,
                                                                 handle_loaded_file, \
                                                                 clear_dictionary    #, \
                                                                 # loaded_file_to_dict
+from learn_foreign_words.logic.zoer_ajax import HttpResponseAjax
 from models import Dictionary, UserDictionary, GlobalStatus
 from forms import TranslateWordForm, LoadFileForm
-# from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
@@ -40,16 +42,8 @@ def start_page(request):
         form = TranslateWordForm()
         # Считываем с какими словарями работать
         dict_status = GlobalStatus.objects.get(id=1)
-        print(GlobalStatus.get_status(dict_status))
-
-        # Изменяем статус словаря
-        new_status = {u'basic_dict': True, u'user_dict': False, u'swodesh_dict': False, u'cw_dict': False}
-        GlobalStatus.set_status(dict_status, new_status)
-        # dict_status.basic_dict_status = False
-        # dict_status.cw_dict_status = True
-        # dict_status.save()
-
-        # GlobalStatus.save()
+        dict_status_db = GlobalStatus.get_status(dict_status)
+        # print(dict_status_db)
 
         # Получаем случайное иностранное слово
         all_words = Dictionary.objects.all()
@@ -58,7 +52,12 @@ def start_page(request):
         random_word_global_2 = random_word.foreign_word
         context = {
                     'random_word': random_word,
-                    'form': form, }
+                    'form': form,
+                    'basic_dict_status': dict_status_db['basic_dict'],
+                    'user_dict_status': dict_status_db['user_dict'],
+                    'swodesh_dict_status': dict_status_db['swodesh_dict'],
+                    'cw_dict_status': dict_status_db['cw_dict'],
+        }
     return render(request, template, context)
 
 
@@ -84,3 +83,26 @@ def load_file(request):
         context = {'form': form, }
 
     return render(request, template, context)
+
+
+@require_http_methods(['POST'])
+@csrf_exempt
+def dict_status_set(request):
+    print('Отработал метод dict_status_set')
+
+    # Считываем с какими словарями работали
+    dict_status = GlobalStatus.objects.get(id=1)
+    status_in_db = GlobalStatus.get_status(dict_status)
+
+    for status_list in ['basic_dict', 'cw_dict', 'swodesh_dict', 'user_dict']:
+        status = (request.POST.get(status_list))
+        print(status)
+        if status == 'on':
+            status_in_db[status_list] = True     # Изменяем статус словаря
+        elif status == 'off':
+            status_in_db[status_list] = False
+
+    # Высталяем статусы словарей в БД
+    GlobalStatus.set_status(dict_status, status_in_db)
+
+    return HttpResponseAjax()

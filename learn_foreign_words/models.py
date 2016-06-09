@@ -115,3 +115,5 @@ class GlobalStatus(models.Model):
         self.swodesh_dict_status = status['swodesh_dict']
         self.cw_dict_status = status['cw_dict']
         self.save()
+
+        return None
