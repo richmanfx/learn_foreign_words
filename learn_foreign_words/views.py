@@ -32,7 +32,7 @@ def start_page(request):
         # Считываем с какими словарями работать
         dict_status = GlobalStatus.objects.get(id=1)
         dict_status_db = GlobalStatus.get_status(dict_status)
-        print(dict_status_db)
+        # print(dict_status_db)
 
         if form.is_valid():
             entered_word = form.cleaned_data['translate_word']
@@ -54,7 +54,7 @@ def start_page(request):
         # Считываем с какими словарями работать
         dict_status = GlobalStatus.objects.get(id=1)
         dict_status_db = GlobalStatus.get_status(dict_status)
-        print(dict_status_db)
+        # print(dict_status_db)
 
         all_words = Dictionary.objects.all()
 
@@ -110,7 +110,6 @@ def load_file(request):
 @require_http_methods(['POST'])
 @csrf_exempt
 def dict_status_set(request):
-    print('Отработал метод dict_status_set')
 
     # Считываем с какими словарями работали
     dict_status = GlobalStatus.objects.get(id=1)
@@ -118,7 +117,6 @@ def dict_status_set(request):
 
     for status_list in ['basic_dict', 'cw_dict', 'swodesh_dict', 'user_dict']:
         status = (request.POST.get(status_list))
-        print(status)
         if status == 'on':
             status_in_db[status_list] = True     # Изменяем статус словаря
         elif status == 'off':

@@ -10,7 +10,7 @@ __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 def clear_dictionary(dictionary):
     my_dict = dictionary.objects.all()
     print('До очистки:' + str(my_dict))
-    my_dict.delete()
+    # my_dict.delete()                  #### TODO: Сделать очистку только USER-словаря
     print('После очистки:' + str(my_dict))
 
 
@@ -64,14 +64,14 @@ def handle_loaded_file(loaded_file):
                                str(i + 1) + ' больше двух разделителей "=". \n'
 
             for i, line in enumerate(lines):
-                first_word = line.split('=')[0].strip().replace(" ", "").decode('utf-8')
+                first_word = line.split('=')[0].strip().replace(" ", "").replace("?", "").decode('utf-8')
                 if not first_word.isalnum():
                     result += 'Неверный формат файла: в первой части строки ' + \
                                str(i + 1) + ' требуется слово (можно с цифрами). \n'
 
                 if line != '\n' and line.strip() != '':
-                    second_word = line.split('=')[1].strip().replace(",", "")\
-                                      .replace(" ", "").replace("-", "").decode('utf-8')
+                    second_word = line.split('=')[1].strip().replace(",", "").replace(" ", "").replace("?", "")\
+                                      .replace("(", "").replace(")", "").replace("-", "").decode('utf-8')
                     # print(second_word)
                     if not second_word.isalpha():
                         result += 'Неверный формат файла: во второй части строки ' + \
@@ -79,9 +79,9 @@ def handle_loaded_file(loaded_file):
 
                 last_word = line.split('=')[-1].strip()
                 # Этот блок закомментировать для загрузки не user-словарей
-                if last_word != '4':
-                    result += 'Неверный формат файла: в конце строки ' + \
-                               str(i + 1) + ' требуется целое число "4" для словаря пользователя. \n'
+                # if last_word != '4':
+                #     result += 'Неверный формат файла: в конце строки ' + \
+                #                str(i + 1) + ' требуется целое число "4" для словаря пользователя. \n'
                 # Этот блок закомментировать для загрузки не user-словарей
 
                 if not last_word.isdigit():
@@ -107,7 +107,7 @@ def write_words_to_dict(lines_loaded_file):
         translate_words = line.split('=')[1].strip().decode('utf-8')
         dict_type = line.split('=')[-1].strip()
 
-        print first_word, translate_words, dict_type
+        # print first_word, translate_words, dict_type
 
         new_db_line = Dictionary(foreign_word=first_word,
                                  translate_word=translate_words,
