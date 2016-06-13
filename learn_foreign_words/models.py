@@ -3,16 +3,32 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 
-__author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
+__author__ = 'Aleksandr Jashhuk, Zoer, R5AM, www.r5am.ru'
+
+
+# Типы словарей
+class ReferenceDictType(models.Model):
+    dict_type = models.CharField(max_length=50,
+                                 verbose_name='Тип словаря',
+                                 unique=False,
+                                 default='basic')
+
+    class Meta:
+        verbose_name = 'Тип словаря'
+        verbose_name_plural = 'Типы словарей'
+
+    def __unicode__(self):
+        return self.dict_type or u''
 
 
 # Основной словарь
 class Dictionary(models.Model):
     foreign_word = models.CharField(max_length=100,
                                     verbose_name='Иностранное слово',
-                                    unique=True)
+                                    unique=False)
     translate_word = models.CharField(max_length=255,
                                       verbose_name='Перевод слова')
+    dict_type = models.ForeignKey(ReferenceDictType)
 
     class Meta:
         ordering = ['foreign_word']
@@ -24,65 +40,6 @@ class Dictionary(models.Model):
 
     def get_url(self):
         return reverse('dictionary', kwargs={'id': self.id})
-
-
-# Словарь пользователя
-class UserDictionary(models.Model):
-    foreign_word = models.CharField(max_length=100,
-                                    verbose_name='Иностранное слово',
-                                    unique=True)
-    translate_word = models.CharField(max_length=255,
-                                      verbose_name='Перевод слова')
-
-    class Meta:
-        verbose_name = 'Иностранное слово Пользователя'
-        verbose_name_plural = 'Иностранные слова Пользователя'
-
-    def __unicode__(self):
-        return self.foreign_word or u''
-
-    def get_url(self):
-        return reverse('user_dictionary', kwargs={'id': self.id})
-
-
-# Словарь Сводеша
-class SwodeshDictionary(models.Model):
-    foreign_word = models.CharField(max_length=100,
-                                    verbose_name='Иностранное слово',
-                                    unique=True)
-    translate_word = models.CharField(max_length=255,
-                                      verbose_name='Перевод слова')
-
-    class Meta:
-        ordering = ['foreign_word']
-        verbose_name = 'Иностранное слово'
-        verbose_name_plural = 'Иностранные слова'
-
-    def __unicode__(self):
-        return self.foreign_word or u''
-
-    def get_url(self):
-        return reverse('swodesh_dictionary', kwargs={'id': self.id})
-
-
-# Словарь CW слов
-class CWDictionary(models.Model):
-    foreign_word = models.CharField(max_length=100,
-                                    verbose_name='CW слово',
-                                    unique=True)
-    translate_word = models.CharField(max_length=255,
-                                      verbose_name='Перевод слова')
-
-    class Meta:
-        ordering = ['foreign_word']
-        verbose_name = 'CW слово'
-        verbose_name_plural = 'CW слова'
-
-    def __unicode__(self):
-        return self.foreign_word or u''
-
-    def get_url(self):
-        return reverse('cw_dictionary', kwargs={'id': self.id})
 
 
 # Статусы словарей

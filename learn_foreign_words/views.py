@@ -4,15 +4,14 @@ from django.shortcuts import render     # , render_to_response
 from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word, \
                                                                 correctness_translate, \
                                                                 handle_loaded_file, \
-                                                                clear_dictionary    #, \
-                                                                # loaded_file_to_dict
+                                                                clear_dictionary
 from learn_foreign_words.logic.zoer_ajax import HttpResponseAjax
-from models import Dictionary, UserDictionary, GlobalStatus
+from models import Dictionary, ReferenceDictType, GlobalStatus
 from forms import TranslateWordForm, LoadFileForm
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+# from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 __author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
 
 random_word_global = ''
@@ -29,6 +28,12 @@ def start_page(request):
     if request.method == 'POST':
         template = 'result_page.html'
         form = TranslateWordForm(request.POST)
+
+        # Считываем с какими словарями работать
+        dict_status = GlobalStatus.objects.get(id=1)
+        dict_status_db = GlobalStatus.get_status(dict_status)
+        print(dict_status_db)
+
         if form.is_valid():
             entered_word = form.cleaned_data['translate_word']
             result = correctness_translate(entered_word, random_word_global)
@@ -36,17 +41,34 @@ def start_page(request):
                     'random_word': random_word_global_2,
                     'entered_word': entered_word,
                     'random_word_global': random_word_global,
-                    'result': result, }
+                    'result': result,
+                    'basic_dict_status': dict_status_db['basic_dict'],
+                    'user_dict_status': dict_status_db['user_dict'],
+                    'swodesh_dict_status': dict_status_db['swodesh_dict'],
+                    'cw_dict_status': dict_status_db['cw_dict'],
+            }
     else:   # GET
         template = 'start_page.html'
         form = TranslateWordForm()
+
         # Считываем с какими словарями работать
         dict_status = GlobalStatus.objects.get(id=1)
         dict_status_db = GlobalStatus.get_status(dict_status)
-        # print(dict_status_db)
+        print(dict_status_db)
+
+        all_words = Dictionary.objects.all()
+
+        # Выбираем слова из активных словарей
+        if dict_status_db['basic_dict'] is False:
+            all_words = all_words.exclude(dict_type=1)
+        if dict_status_db['cw_dict'] is False:
+            all_words = all_words.exclude(dict_type=2)
+        if dict_status_db['swodesh_dict'] is False:
+            all_words = all_words.exclude(dict_type=3)
+        if dict_status_db['user_dict'] is False:
+            all_words = all_words.exclude(dict_type=4)
 
         # Получаем случайное иностранное слово
-        all_words = Dictionary.objects.all()
         random_word = get_random_word(all_words)
         random_word_global = random_word.translate_word
         random_word_global_2 = random_word.foreign_word
@@ -77,7 +99,7 @@ def load_file(request):
                 context = {'file_error': result_load_file}
     else:   # GET
         # Очистка словаря пользователя
-        clear_dictionary(UserDictionary)
+        # ## clear_dictionary(UserDictionary)
 
         form = LoadFileForm()
         context = {'form': form, }
