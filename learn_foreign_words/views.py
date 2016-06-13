@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from django.shortcuts import render     # , render_to_response
+from django.shortcuts import render
 from learn_foreign_words.logic.logic_learn_foreign_words import get_random_word, \
                                                                 correctness_translate, \
                                                                 handle_loaded_file, \
                                                                 clear_dictionary
 from learn_foreign_words.logic.zoer_ajax import HttpResponseAjax
-from models import Dictionary, ReferenceDictType, GlobalStatus
+from models import Dictionary, GlobalStatus
 from forms import TranslateWordForm, LoadFileForm
-# from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-__author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
+
+__author__ = 'Aleksandr Jashhuk, Zoer, R5AM, www.r5am.ru'
 
 random_word_global = ''
 random_word_global_2 = ''
@@ -99,7 +99,7 @@ def load_file(request):
                 context = {'file_error': result_load_file}
     else:   # GET
         # Очистка словаря пользователя
-        # ## clear_dictionary(UserDictionary)
+        clear_dictionary(Dictionary)
 
         form = LoadFileForm()
         context = {'form': form, }

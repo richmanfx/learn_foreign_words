@@ -3,14 +3,16 @@ import random
 import mimetypes
 from learn_foreign_words.models import Dictionary, ReferenceDictType
 
-__author__ = 'Aleksandr Jashhuk, Zoer, R5AM'
+__author__ = 'Aleksandr Jashhuk, Zoer, R5AM, www.r5am.ru'
 
 
-# Очищает таблицу словаря
+# Очищает таблицу словаря пользователя
 def clear_dictionary(dictionary):
+    dict_type = 4                       # 4 - словарь user-а
     my_dict = dictionary.objects.all()
+    my_dict = my_dict.filter(dict_type=dict_type)
     print('До очистки:' + str(my_dict))
-    # my_dict.delete()                  #### TODO: Сделать очистку только USER-словаря
+    # my_dict.delete()
     print('После очистки:' + str(my_dict))
 
 
@@ -79,9 +81,9 @@ def handle_loaded_file(loaded_file):
 
                 last_word = line.split('=')[-1].strip()
                 # Этот блок закомментировать для загрузки не user-словарей
-                # if last_word != '4':
-                #     result += 'Неверный формат файла: в конце строки ' + \
-                #                str(i + 1) + ' требуется целое число "4" для словаря пользователя. \n'
+                if last_word != '4':
+                    result += 'Неверный формат файла: в конце строки ' + \
+                               str(i + 1) + ' требуется целое число "4" для словаря пользователя. \n'
                 # Этот блок закомментировать для загрузки не user-словарей
 
                 if not last_word.isdigit():
@@ -106,8 +108,6 @@ def write_words_to_dict(lines_loaded_file):
         first_word = line.split('=')[0].strip().decode('utf-8')
         translate_words = line.split('=')[1].strip().decode('utf-8')
         dict_type = line.split('=')[-1].strip()
-
-        # print first_word, translate_words, dict_type
 
         new_db_line = Dictionary(foreign_word=first_word,
                                  translate_word=translate_words,
