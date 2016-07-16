@@ -20,6 +20,25 @@ a {
     font-size: 3rem;
 }
 
+a:link {
+    text-decoration: none;
+    color: #22bbff;
+}
+
+a:visited {
+    color: #22bbff;
+}
+
+/*a:active {*/
+    /*color: #ffffff;*/
+/*}*/
+
+a:hover {
+    text-decoration: underline;
+    color: #ffa500;
+}
+
+
 #base {
 	background:#008B8B;
 	border: 1px solid #FFFFFF;
