@@ -12,7 +12,7 @@
 
 <body>
 	<h2>Запоминатель иностранных слов</h2>
-    <a href="//www.r5am.ru">&nbsp;R5AM.RU</a>
+    <a href="//www.r5am.ru">&nbsp;R5AM.RU&nbsp;</a>
     <div class="row">
         <div id="base" class="col-sm-12 col-md-12">
             {% block content %}{% endblock %}
@@ -64,8 +64,9 @@
                data-target="#aboutModal">
                     О программе
             </a>
-            <a href="/learn_foreign_words/load_file/"
-               class="btn btn-info btn-footer">
+            <a id="load-file-btn"
+               class="btn btn-info btn-footer"
+               href="/learn_foreign_words/load_file/">
                     Загрузить словарь пользователя
             </a>
         </div>
