@@ -19,4 +19,3 @@ urlpatterns = [
     url(r'^dict_status_set/', dict_status_set, name='dict_status_set'),
 
 ]
-
